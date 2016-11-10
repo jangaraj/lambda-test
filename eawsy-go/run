@@ -1,0 +1,54 @@
+#!/usr/bin/env python
+
+from __future__ import print_function
+import json, sys
+
+class Context:
+  
+  def __init__(self):
+    self.function_name = "mocked_function_name"
+    self.function_version = "mocked_function_version"
+    self.invoked_function_arn = "mocked_invoked_function_arn"
+    self.memory_limit_in_mb = "128"
+    self.aws_request_id = "mocked_aws_request_id"
+    self.log_group_name = "mocked_log_group_name"
+    self.log_stream_name = "mocked_log_stream_name"
+    self.identity = None
+    self.client_context = None
+    
+  def log(self, msg):
+    print(msg, end="")
+  
+  def get_remaining_time_in_millis(self):
+    return 1000
+
+if __name__ == '__main__':
+
+  from handler import handle
+  
+  evt = {"Hello": "World"}
+  ctx = Context()
+
+  '''
+  print()
+  print(">>> Event <<<")
+  print(json.dumps(evt, indent=2))
+
+  print()
+  print(">>> Context <<<")
+  print(json.dumps(ctx.__dict__, indent=2))
+
+  print()
+  print(">>> Execution <<<")
+  
+  try:
+    res = handle(evt, ctx)
+    print()
+    print(">>> Result <<<")
+    print(json.dumps(res, indent=2))
+  except Exception as e:
+    print()
+    print(">>> Error <<<")
+    print(e)
+  '''
+  res = handle(evt, ctx)
